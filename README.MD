@@ -1,5 +1,4 @@
 # ✓~~TODO Learning Lab~~
-======================================
 
 ## Description
 This is a simple todo app written multiple times in different technologies just for learning purposes.
@@ -44,6 +43,7 @@ This project is going to use these databases interchangeability:
 - [Mysql](https://dev.mysql.com/downloads/)
 - [MsSql](https://www.microsoft.com/en-us/sql-server/sql-server-downloads-free-trial)
 - [MariaDB](https://downloads.mariadb.org/)
+- [Postgres](https://www.postgresql.org/)
 
 ###### Document
 - [MongoDb](https://docs.mongodb.com/manual/installation/)
