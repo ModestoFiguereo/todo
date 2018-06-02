@@ -1,4 +1,4 @@
-# ✓~~TODO Learning Lab~~
+# [✓] ~~TODO Learning Lab~~
 
 ## Description
 This is a simple todo app written multiple times in different technologies just for learning purposes.

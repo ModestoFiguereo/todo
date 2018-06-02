@@ -188,7 +188,7 @@ services:
       - postgres
     volumes:
       - ./scripts/:/scripts/
-    command: psql -h 'postgres' -U me postgres -f /scripts/create-kong-db.sql
+    command: /scripts/kong-create-db.sh
     networks:
       todo:
 
