@@ -217,10 +217,7 @@ services:
       - kong-create-database
       - kong-migration
     ports:
-      - 8000:8000
-      - 8443:8443
-      - 8001:8001
-      - 8444:8444
+      - 80:8000
     environment:
       KONG_DATABASE: postgres
       KONG_PG_HOST: postgres

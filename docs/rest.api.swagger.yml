@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  title: Instaviu API
+  description: Swagger documantation for Instaviu REST API
+  version: '0.1'
+host: 'todo.loc'
+schemes:
+  - http
+  - https
+basePath: /api/v1
+tags:
+  - name: todolist
+    description: All about todo lists.
+paths:
+  /todo:
+    post:
+      tags:
+        - todolist
+      summary: creates todo list.
+      description: Here you can create a brand new todo list with or without items.
+      operationId: createList
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: body of the request.
+          required: true
+          schema:
+             $ref: '#/definitions/TodoPayload'
+      responses:
+        '201':
+          description: todolist created.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              ok:
+                type: boolean
+                default: true
+              message:
+                type: string
+              data:
+                $ref: '#/definitions/Todo'
+        '400':
+          description: invalid params.
+          schema:
+            $ref: '#/definitions/FailAPIResponse'
+        '401':
+          description: username or password or refresh_token is wrong.
+definitions:
+  TodoPayload:
+    type: object
+    properties:
+      title:
+        type: string
+        description: title of todolist.
+      items:
+        type: array
+        items:
+          type: string
+        description: item of the todo list
+  Todo:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+        description: title of todolist.
+      items:
+        type: array
+        items:
+          type: string
+        description: item of the todo list
+      owner:
+        type: string
+        description: id of the owner
+      createdAt:
+        type: number
+        description: timestamp of the date of creation
+      updatedAt:
+        type: number
+        description: timestamp of the date of last modificaiton
+  FailAPIResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      ok:
+        type: boolean
+        default: false
+      error:
+        type: string
+      message:
+        type: string
