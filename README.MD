@@ -67,3 +67,39 @@ In order to run this project in you local environment you will need:
 - (REQUIRED) [Docker compose](https://github.com/docker/compose)
 - (REQUIRED) [Dnsmasq](https://wiki.debian.org/HowTo/dnsmasq) / Acrylic DNS Proxy (Windows)
 - (OPTIONAL) [Socat](http://www.dest-unreach.org/socat/doc/socat.html)
+
+#### Dnsmasq (Unix) / Acrylic dns proxy (Windows)
+
+(@TODO: write the doc for configuring Acrylic on windows.)
+
+Configure it depending of your OS so you can access Kong API Gateway when send a html/rest request to todo.loc or `*.todo.loc` where `*` is whatever fit subdomain [RFC rules](https://tools.ietf.org/html/rfc1035)
+
+#### Setup Dnsmasq on Linux
+
+```bash
+sudo apt-get install dnsmasq
+echo 'address=/.todo.loc/127.0.0.1' > /etc/dnsmasq.d/todo-inf
+sudo service dnsmasq restart
+```
+
+#### Setup Dnsmasq on OSX
+
+```bash
+brew install dnsmasq
+cd $(brew --prefix)
+mkdir etc
+echo 'address=/.todo.loc/127.0.0.1' > etc/dnsmasq.conf
+sudo cp -v $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons
+sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+sudo mkdir /etc/resolver
+sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/loc'
+```
+
+## Running the system
+
+(@TODO: write the equivalent .bat scripts for windows.)
+
+- `./startup.sh` **JUST THE FIRST TIME** this script will set everything up for you and run the system.
+- `./start.sh` this script allow to run the system starting all containers for you.
+- `./stop.sh` this script stop the system.
+- `./clean.sh` this script will stop and remove all containers as well as all their volumes and images.
